@@ -1,0 +1,43 @@
+Dim sConnString As String;
+Dim MyConnection As System.Data.SqlClient.SqlConnection;
+Dim MyCommand As System.Data.SqlClient.SqlCommand;
+Dim MyDataReader As System.Data.SqlClient.SqlDataReader;
+
+Logmessage("ADO Database Config Begin");
+sConnString = "Server= localhost; Database= Datalogging; Connect Timeout=200; pooling='true'; Max Pool Size=200; Trusted_Connection=Yes;";
+MyConnection = New System.Data.SqlClient.SqlConnection(sConnString);
+MyConnection.Open();
+
+MyCommand = New System.Data.SqlClient.SqlCommand("Config", MyConnection);
+MyCommand.CommandType = System.Data.CommandType.StoredProcedure;
+MyCommand.Parameters.Add("@x1name", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@x1name").Value = x1name;
+MyCommand.Parameters.Add("@y1name", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@y1name").Value = y1name;
+MyCommand.Parameters.Add("@y2name", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@y2name").Value = y2name;
+MyCommand.Parameters.Add("@y3name", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@y3name").Value = y3name;
+MyCommand.Parameters.Add("@y4name", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@y4name").Value = y4name;
+MyCommand.Parameters.Add("@y5name", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@y5name").Value = y5name;
+MyCommand.Parameters.Add("@y6name", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@y6name").Value = y6name;
+MyCommand.Parameters.Add("@y7name", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@y7name").Value = y7name;
+MyCommand.Parameters.Add("@y8name", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@y8name").Value = y8name;
+MyCommand.Parameters.Add("@xscale", System.Data.SqlDbType.Real);
+MyCommand.Parameters("@xscale").Value = xscale;
+MyCommand.Parameters.Add("@title", System.Data.SqlDbType.VarChar);
+MyCommand.Parameters("@title").Value = title;
+MyCommand.Parameters.Add("@numplots", System.Data.SqlDbType.Int);
+MyCommand.Parameters("@numplots").Value = numplots;
+
+MyDataReader = MyCommand.ExecuteReader();
+MyDataReader.Close();
+MyConnection.Close();
+StoreConfigData = False;
+Enable = True;
+Logmessage("ADO Database Config End");

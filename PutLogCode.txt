@@ -1,0 +1,35 @@
+Dim sConnString As String;
+Dim MyConnection As System.Data.SqlClient.SqlConnection;
+Dim MyCommand As System.Data.SqlClient.SqlCommand;
+Dim MyDataReader As System.Data.SqlClient.SqlDataReader;
+
+Logmessage("ADO Database Putlog Begin");
+x1=x1+1;
+sConnString = "Server= localhost; Database= Datalogging; Connect Timeout=200; pooling='true'; Max Pool Size=200; Trusted_Connection=Yes;";
+MyConnection = New System.Data.SqlClient.SqlConnection(sConnString);
+MyConnection.Open();
+
+MyCommand = New System.Data.SqlClient.SqlCommand("PutLog", MyConnection);
+MyCommand.CommandType = System.Data.CommandType.StoredProcedure;
+MyCommand.Parameters.Add("@x1", System.Data.SqlDbType.Int);
+MyCommand.Parameters("@x1").Value = x1;
+MyCommand.Parameters.Add("@y1", System.Data.SqlDbType.Float);
+MyCommand.Parameters("@y1").Value = y1;
+MyCommand.Parameters.Add("@y2", System.Data.SqlDbType.Float);
+MyCommand.Parameters("@y2").Value = y2;
+MyCommand.Parameters.Add("@y3", System.Data.SqlDbType.Float);
+MyCommand.Parameters("@y3").Value = y3;
+MyCommand.Parameters.Add("@y4", System.Data.SqlDbType.Float);
+MyCommand.Parameters("@y4").Value = y4;
+MyCommand.Parameters.Add("@y5", System.Data.SqlDbType.Float);
+MyCommand.Parameters("@y5").Value = y5;
+MyCommand.Parameters.Add("@y6", System.Data.SqlDbType.Float);
+MyCommand.Parameters("@y6").Value = y6;
+MyCommand.Parameters.Add("@y7", System.Data.SqlDbType.Float);
+MyCommand.Parameters("@y7").Value = y7;
+MyCommand.Parameters.Add("@y8", System.Data.SqlDbType.Float);
+MyCommand.Parameters("@y8").Value = y8;
+MyDataReader = MyCommand.ExecuteReader();
+MyDataReader.Close();
+MyConnection.Close();
+Logmessage("ADO Database Putlog End");

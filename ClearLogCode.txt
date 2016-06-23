@@ -1,0 +1,15 @@
+Dim sConnString As String;
+Dim MyConnection As System.Data.SqlClient.SqlConnection;
+Dim MyCommand As System.Data.SqlClient.SqlCommand;
+Dim MyDataReader As System.Data.SqlClient.SqlDataReader;
+
+Logmessage("ADO Database ClearLog Begin");
+sConnString = "Server= localhost; Database= Datalogging; Connect Timeout=200; pooling='true'; Max Pool Size=200; Trusted_Connection=Yes;";
+MyConnection = New System.Data.SqlClient.SqlConnection(sConnString);
+MyConnection.Open();
+MyCommand = New System.Data.SqlClient.SqlCommand("ClearLog", MyConnection);
+MyDataReader = MyCommand.ExecuteReader();
+MyDataReader.Close();
+MyConnection.Close();
+StoreConfigData = True;
+Logmessage("ADO Database ClearLog End");
